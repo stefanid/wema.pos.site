@@ -1,0 +1,109 @@
+html, body {
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Fraunces', serif;
+}
+
+.bg {
+    background-color: #F9F4F0;
+    background-image: url("/images/wema-logo-big.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-mint {
+    background-color: #A3B6B8;
+    background-image: url("/images/wema-logo-big.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.logo-refresh {
+    margin-top: 34px;
+}
+
+.login-container {
+    background-color: #E36B53;
+    border-radius: 20px;
+    margin-top: 90px;
+    margin-bottom: 40px;
+    padding-top: 53px;
+    padding-bottom: 74px;
+}
+
+.payment-input-container {
+    background-color: #A3B6B8;
+    border-radius: 20px;
+    margin-top: 90px;
+    margin-bottom: 40px;
+    padding-top: 53px;
+    padding-bottom: 74px;
+}
+
+.active-payment-input-container {
+    background-color: #E36B53;
+    border-radius: 20px;
+    margin-top: 90px;
+    margin-bottom: 40px;
+    padding-top: 53px;
+    padding-bottom: 74px;
+}
+
+.form-control-lg {
+    font-size: 40px;
+    color: #A3B6B8;
+}
+
+.successful-payment-container h1,
+.login-container h1,
+.payment-input-container h1,
+.active-payment-input-container h1 {
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 33px;
+    color: #fff;
+}
+
+.successful-payment-checkmark {
+    margin-top: 224px;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    border-right: none;
+}
+
+.input-group-text {
+    font-family: 'Fraunces', serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: #0E1F24;
+    background-color: #fff;
+    padding-right: 34px;
+}
+
+.btn-primary,
+.btn-primary:hover {
+    color: #A3B6B8;
+    background-color: #E8EDED;
+    border-color: #E8EDED;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.btn-secondary,
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #1E3946;
+    border-color: #1E3946;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 30px;
+}

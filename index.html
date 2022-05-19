@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="wema-pos">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600;700&family=Literata:wght@600&family=Poppins:wght@400;500&display=swap"
+            rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link href="css/default.css" rel="stylesheet">
+        <title>WeMa</title>
+    </head>
+<body 
+    ng-controller="pos-controller as vm" 
+    ng-class="{'bg': vm.currentState.index === 0 || vm.currentState.index === 1, 
+        'bg-mint': vm.currentState.index === 2}">
+
+
+        <!--Login view-->
+        <div ng-if="vm.currentState.index === 0" class="container-fluid">
+            <div class="row">
+                <div class="d-flex justify-content-between logo-refresh">
+                    <img src="/images/wema.svg">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 offset-md-1 login-container">
+                    <h1 class="text-center">Login</h1>
+                    <div class="col-md-10 offset-md-1">
+                        <form ng-submit="vm.login(pm)">
+                            <div class="input-group mb-3">
+                                <input ng-model="pm.username" type="text" class="form-control form-control-lg" placeholder="Brugernavn">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input ng-model="pm.password" type="password" class="form-control form-control-lg" placeholder="Kodeord">
+                            </div>
+                            <button type="submit" class="btn btn-secondary btn-lg w-100" >Login</button>                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Payment view-->
+        <div ng-if="vm.currentState.index === 1" class="container-fluid">
+            <div class="row">
+                <div class="d-flex justify-content-between logo-refresh">
+                    <img src="/images/wema.svg">
+                    <a><img src="/images/refresh-icon.svg"></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 offset-md-1" ng-class="{'payment-input-container': vm.amount === null || vm.amount === 0, 
+                                'active-payment-input-container': vm.amount > 0}">
+                    <h1 class="text-center">Indtast beløb</h1>
+                    <div class="col-md-10 offset-md-1">
+                        <form ng-submit="vm.requestPayment(vm.amount)">
+                            <div class="input-group mb-3">
+                                <input ng-model="vm.amount" type="number" class="form-control form-control-lg" placeholder="0">
+                                <span class="input-group-text">dkk</span>
+                            </div>
+                            <button 
+                                ng-class="{'btn-primary': vm.amount === null || vm.amount === 0, 'btn-secondary': vm.amount > 0}"
+                                type="submit" 
+                                class="btn btn-lg w-100">Betal</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Payment successful view-->
+        <div ng-if="vm.currentState.index === 2" class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 offset-md-1 successful-payment-container">
+                   <img class="mx-auto d-block successful-payment-checkmark" src="images/check-mark-icon.svg">
+                   <h1 class="text-center">Beløbet sendt til Stripe</h1>
+                   <button ng-click="vm.completePayment()" class="btn btn-secondary btn-lg w-100">Gennemfør betaling</button>
+                   <button ng-click="vm.cancelPayment()" class="btn btn-secondary btn-lg w-100">Annuller betaling</button>
+                </div>
+            </div>
+        </div>
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://js.stripe.com/terminal/v1/"></script>
+    <script src="/js/vendor/angular.min.js"></script>
+    <script src="js/api-factory.js"></script>
+    <script src="js/index.js"></script>
+
+
+</body>
+</html>
