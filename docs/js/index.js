@@ -51,8 +51,7 @@
                     .then((authResponse) => {
                         return authResponse;
                     })
-                    .then((authResponse) => {
-                        
+                    .then((authResponse) => {                    
                         logInTime = new Date(); 
                         logInToEpoch = Math.round(logInTime.getTime() / 1000);
                         window.localStorage.setItem("loggedInToken", logInToEpoch);
@@ -91,7 +90,7 @@
                                 } else if (processedPaymentResult.paymentIntent) {
                                     paymentIntentId = processedPaymentResult.paymentIntent.id;
                                     console.log('terminal.processPayment', processedPaymentResult.paymentIntent);
-                                      vm.changeState('finished');
+                                    vm.changeState('finished');
                                 }
                             })
                         }
@@ -163,8 +162,10 @@
                     .then((discoverResult) => {
                         if (discoverResult.error) {
                             console.log('Failed to discover: ', discoverResult.error);
+                            window.localStorage.clear();
                         } else if (discoverResult.discoveredReaders.length === 0) {
                             console.log('No available readers.')
+                            window.localStorage.clear();
                         } else {
                              //Selecting at position 0 because we have only one reader present
                              var discoveredReader = discoverResult.discoveredReaders[0];
@@ -173,6 +174,7 @@
                              .then((connectResult) => {
                                 if (connectResult.error) {
                                     console.log('Failed to connect: ', connectResult.error);
+                                    window.localStorage.clear();
                                 } else {
                                     console.log('Connected to reader: ', connectResult.reader.label);
                                     vm.changeState('payment');
